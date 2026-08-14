@@ -1,130 +1,152 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AURA — фестиваль современного искусства</title>
-    <meta name="description" content="AURA — ночной фестиваль света, музыки и искусства." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="enhancements.css" />
-  </head>
-  <body>
-    <div class="noise"></div>
-    <div class="cursor-glow"></div>
-    <header class="header">
-      <a class="logo" href="#top" aria-label="AURA">AURA<span>®</span></a>
-      <nav aria-label="Основная навигация">
-        <a href="#about">О фестивале</a>
-        <a href="#lineup">Программа</a>
-        <a href="#place">Локация</a>
-      </nav>
-      <div class="header-actions"><button class="account-button" type="button" data-open-login>Войти <span>↗</span></button><a class="header-ticket" href="#tickets">Билеты <i>↗</i></a></div>
-      <button class="menu-button" aria-label="Открыть меню"><span></span><span></span></button>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0d0f" />
+  <meta name="description" content="СЕВЕР — фестиваль новой музыки и визуального искусства на берегу Финского залива." />
+  <title>СЕВЕР — фестиваль новой культуры</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="account.css" />
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><span>СЕВЕР</span><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
 
-    <main id="top">
-      <section class="hero">
-        <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div>
-        <div class="hero-top reveal">
-          <p>Москва · Хлебозавод №9</p>
-          <p>14—16 августа · 2026</p>
-        </div>
-        <div class="hero-content">
-          <p class="eyebrow reveal">Фестиваль света и звука <span></span> 03:00 PM — 03:00 AM</p>
-          <h1 class="hero-title" aria-label="AURA"><span class="reveal-title">AU</span><span class="reveal-title accent">RA</span></h1>
-          <div class="hero-bottom reveal">
-            <p>Три ночи, в которых город<br>звучит и светится иначе.</p>
-            <a href="#tickets" class="round-button"><span>Стать<br>частью</span><i>↘</i></a>
-          </div>
-        </div>
-        <div class="scroll-hint"><span></span>Листайте, чтобы почувствовать</div>
-      </section>
-
-      <section class="marquee" aria-label="Направления фестиваля">
-        <div class="marquee-track"><span>МУЗЫКА</span><b>✦</b><span>СВЕТ</span><b>✦</b><span>ИСКУССТВО</span><b>✦</b><span>ЛЮДИ</span><b>✦</b><span>МУЗЫКА</span><b>✦</b><span>СВЕТ</span><b>✦</b><span>ИСКУССТВО</span><b>✦</b><span>ЛЮДИ</span><b>✦</b></div>
-      </section>
-
-      <section class="about section" id="about">
-        <p class="section-number reveal">01 / МАНИФЕСТ</p>
-        <div class="about-grid">
-          <h2 class="reveal">Больше,<br>чем <em>ночь.</em></h2>
-          <div class="about-copy reveal">
-            <p class="lead">AURA — это территория смелых звуков, новых встреч и искусства без границ.</p>
-            <p>Мы превратили индустриальное пространство в живой организм: днём здесь можно заблудиться среди инсталляций, а ночью — найти свой ритм под открытым небом.</p>
-            <a class="text-link" href="#lineup">Исследовать программу <span>→</span></a>
-          </div>
-        </div>
-        <div class="stat-row reveal">
-          <div><strong>3</strong><span>сцены</span></div><div><strong>30+</strong><span>артистов</span></div><div><strong>72</strong><span>часа эмоций</span></div><div><strong>∞</strong><span>возможностей</span></div>
-        </div>
-      </section>
-
-      <section class="lineup section" id="lineup">
-        <div class="lineup-head"><p class="section-number reveal">02 / ПРОГРАММА</p><p class="reveal">Три пространства.<br>Один пульс.</p></div>
-        <div class="artist-list">
-          <article class="artist reveal"><span>01</span><h3>NTO</h3><p>Live electronic</p><i>↗</i></article>
-          <article class="artist reveal"><span>02</span><h3>MONOLINK</h3><p>Hybrid live set</p><i>↗</i></article>
-          <article class="artist reveal"><span>03</span><h3>IC3PEAK</h3><p>Special performance</p><i>↗</i></article>
-          <article class="artist reveal"><span>04</span><h3>MUJERES</h3><p>Ambient ritual</p><i>↗</i></article>
-        </div>
-        <a class="program-button reveal" href="#tickets">Вся программа <span>↗</span></a>
-      </section>
-
-      <section class="experience">
-        <div class="experience-image"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1800&q=82" alt="Свет и силуэты на ночном музыкальном выступлении" /></div>
-        <div class="experience-card reveal">
-          <span>ПРОСТРАНСТВО / 2026</span>
-          <h2>Ночь<br>принадлежит<br><em>нам.</em></h2>
-          <p>Приезжайте раньше. Оставайтесь дольше. Позвольте себе быть внутри момента.</p>
-        </div>
-      </section>
-
-      <section class="tickets section" id="tickets">
-        <p class="section-number reveal">03 / БИЛЕТЫ</p>
-        <div class="tickets-top"><h2 class="reveal">Выберите<br>свой <em>ритм.</em></h2><p class="reveal">Билеты ограничены.<br>Следующая волна — уже скоро.</p></div>
-        <div class="ticket-grid">
-          <article class="ticket-card reveal"><p>ONE NIGHT</p><strong>4 900 <small>₽</small></strong><span>Один выбранный день</span><a href="#">Выбрать <i>↗</i></a></article>
-          <article class="ticket-card featured reveal"><p>FULL PASS <b>POPULAR</b></p><strong>11 900 <small>₽</small></strong><span>Все три дня фестиваля</span><a href="#">Выбрать <i>↗</i></a></article>
-          <article class="ticket-card reveal"><p>BACKSTAGE</p><strong>24 900 <small>₽</small></strong><span>Доступ в закрытые зоны</span><a href="#">Выбрать <i>↗</i></a></article>
-        </div>
-      </section>
-
-      <section class="gallery section" aria-label="Атмосфера фестиваля">
-        <div class="gallery-heading"><p class="section-number reveal">МЕЖДУ СЦЕНАМИ</p><p class="reveal">Не просто смотреть.<br>Проживать.</p></div>
-        <div class="photo-grid">
-          <figure class="photo-one reveal"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=80" alt="Толпа на фестивале ночью" /><figcaption>01 — Потеряться в свете</figcaption></figure>
-          <figure class="photo-two reveal"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1000&q=80" alt="Сцена музыкального фестиваля" /><figcaption>02 — Найти свой звук</figcaption></figure>
-          <figure class="photo-three reveal"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=80" alt="Концертная сцена в ярком свете" /><figcaption>03 — Остаться до утра</figcaption></figure>
-        </div>
-      </section>
-
-      <section class="location section" id="place">
-        <div class="location-copy reveal"><p class="section-number">04 / ЛОКАЦИЯ</p><h2>Хлебозавод<br><em>№9</em></h2><p>Новодмитровская, 1<br>Москва, Россия</p><a class="text-link" href="https://maps.google.com" target="_blank" rel="noreferrer">Как добраться <span>↗</span></a></div>
-        <div class="map reveal"><div class="map-circle"></div><span class="pin">A</span><span class="map-label label-one">САВЁЛОВСКАЯ</span><span class="map-label label-two">ХЛЕБОЗАВОД</span><span class="map-label label-three">ДМИТРОВСКАЯ</span><div class="roads r1"></div><div class="roads r2"></div><div class="roads r3"></div></div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-cta"><p class="reveal">Готовы к главной ночи лета?</p><a href="#tickets" class="footer-title reveal">ДА<span>,</span> ХОЧУ <i>↗</i></a></div>
-      <div class="footer-bottom"><a class="logo" href="#top">AURA<span>®</span></a><div><a href="#">Instagram</a><a href="#">Telegram</a><a href="#">VK</a></div><p>© 2026 AURA Festival</p></div>
-    </footer>
-    <div class="login-modal" id="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="login-title">
-      <div class="login-panel">
-        <button class="modal-close" type="button" aria-label="Закрыть" data-close-login>×</button>
-        <p class="section-number">AURA / ACCOUNT</p>
-        <h2 id="login-title">Войти<br>в <em>свой ритм.</em></h2>
-        <p class="login-description">Сохраняйте билеты, программу и любимых артистов в одном месте.</p>
-        <form id="login-form">
-          <label>Электронная почта<input id="login-email" type="email" autocomplete="email" placeholder="you@email.com" required /></label>
-          <label>Пароль<input type="password" autocomplete="current-password" placeholder="••••••••" required minlength="4" /></label>
-          <button class="login-submit" type="submit">Войти <span>↗</span></button>
-        </form>
-        <p class="login-note">Нет аккаунта? <button type="button" data-signup>Создать за минуту</button></p>
-      </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="СЕВЕР — наверх">СЕВЕР<sup>27</sup></a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#idea">Идея</a><a href="#program">Программа</a><a href="#place">Место</a><a href="#tickets">Билеты</a>
+    </nav>
+    <div class="header-actions">
+      <button class="login-trigger" type="button" data-modal="account">Войти</button>
+      <a class="micro-button" href="#tickets">Билет <span>↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false"><i></i><i></i></button>
     </div>
-    <script src="script.js"></script>
-  </body>
+  </header>
+
+  <aside class="mobile-menu" aria-hidden="true">
+    <nav><a href="#idea">Идея</a><a href="#program">Программа</a><a href="#place">Место</a><a href="#tickets">Билеты</a></nav>
+    <p>18—20 июня 2027<br>Санкт-Петербург</p>
+  </aside>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-photo" src="assets/crowd.jpg" alt="Люди на концерте в синем свете" />
+      <div class="hero-shade"></div>
+      <div class="hero-topline"><span>59.9272° N / 30.2414° E</span><span>Санкт-Петербург · Россия</span></div>
+      <div class="hero-copy">
+        <p class="kicker reveal">Фестиваль новой культуры</p>
+        <h1 aria-label="Север"><span>СЕ</span><span class="outline">ВЕР</span></h1>
+        <div class="hero-meta reveal">
+          <p>Три дня музыки, света<br>и северного воздуха.</p>
+          <p class="hero-date"><b>18—20</b><br>ИЮНЯ · 2027</p>
+        </div>
+      </div>
+      <a class="hero-cta" href="#tickets"><span>Войти<br>в лето</span><i>↓</i></a>
+      <div class="hero-index">01 <span></span> 06</div>
+    </section>
+
+    <section class="ticker" aria-label="Темы фестиваля"><div>
+      <span>МУЗЫКА</span><i>✦</i><span>СВЕТ</span><i>✦</i><span>АРХИТЕКТУРА</span><i>✦</i><span>БЕЛЫЕ НОЧИ</span><i>✦</i><span>МУЗЫКА</span><i>✦</i><span>СВЕТ</span><i>✦</i><span>АРХИТЕКТУРА</span><i>✦</i><span>БЕЛЫЕ НОЧИ</span><i>✦</i>
+    </div></section>
+
+    <section class="manifest section" id="idea">
+      <div class="section-label reveal"><span>01</span><p>МАНИФЕСТ</p></div>
+      <div class="manifest-copy">
+        <p class="manifest-side reveal">Не убегаем от города.<br>Меняем его частоту.</p>
+        <h2 class="reveal">Город кончается.<br><em>Начинается Север.</em></h2>
+      </div>
+      <div class="manifest-bottom">
+        <p class="reveal">СЕВЕР собирает тех, кому мало просто слушать. Музыканты, художники и архитекторы создают пространство, которое существует только три дня — между водой, небом и бывшими заводскими цехами.</p>
+        <div class="metrics reveal"><div><b>03</b><span>дня</span></div><div><b>42</b><span>артиста</span></div><div><b>05</b><span>пространств</span></div></div>
+      </div>
+    </section>
+
+    <section class="portal">
+      <div class="portal-sticky">
+        <img src="assets/north.jpg" alt="Заснеженный северный лес" />
+        <div class="portal-overlay"></div>
+        <p class="portal-small">СЕВЕР — ЭТО НЕ НАПРАВЛЕНИЕ</p>
+        <h2>ЭТО<br><span>СОСТОЯНИЕ</span></h2>
+        <p class="portal-coordinates">64°32′ N<br>40°32′ E</p>
+      </div>
+    </section>
+
+    <section class="program section" id="program">
+      <div class="section-label reveal"><span>02</span><p>ПРОГРАММА</p></div>
+      <div class="program-head reveal">
+        <h2>Три дня.<br><em>Один пульс.</em></h2>
+        <div class="day-tabs" role="tablist" aria-label="Дни фестиваля">
+          <button class="active" role="tab" aria-selected="true" data-day="day1">ПТ 18</button>
+          <button role="tab" aria-selected="false" data-day="day2">СБ 19</button>
+          <button role="tab" aria-selected="false" data-day="day3">ВС 20</button>
+        </div>
+      </div>
+      <div class="schedule active" id="day1">
+        <article><time>18:00</time><h3>SHORTPARIS</h3><p>Главный ангар · Live</p><i>01</i></article>
+        <article><time>20:30</time><h3>IC3PEAK</h3><p>Главный ангар · AV show</p><i>02</i></article>
+        <article><time>23:00</time><h3>СБПЧ</h3><p>Порт · Special set</p><i>03</i></article>
+        <article><time>01:30</time><h3>НИКИТИН</h3><p>Цех · All night long</p><i>04</i></article>
+      </div>
+      <div class="schedule" id="day2">
+        <article><time>17:00</time><h3>ХАДН ДАДН</h3><p>Порт · Live</p><i>01</i></article>
+        <article><time>19:30</time><h3>LOVV66</h3><p>Главный ангар · Live</p><i>02</i></article>
+        <article><time>22:00</time><h3>БАЗАР</h3><p>Цех · Hybrid set</p><i>03</i></article>
+        <article><time>00:30</time><h3>CHERNOBURKV</h3><p>Порт · Live</p><i>04</i></article>
+      </div>
+      <div class="schedule" id="day3">
+        <article><time>16:00</time><h3>ЛАУД</h3><p>Порт · Sunset set</p><i>01</i></article>
+        <article><time>19:00</time><h3>ЭЛЕКТРОФОРЕЗ</h3><p>Главный ангар · Live</p><i>02</i></article>
+        <article><time>21:30</time><h3>СИРОТКИН</h3><p>Порт · Closing</p><i>03</i></article>
+        <article><time>23:30</time><h3>SECRET GUEST</h3><p>Крыша · Finale</p><i>04</i></article>
+      </div>
+    </section>
+
+    <section class="editorial section">
+      <div class="editorial-grid">
+        <figure class="shot shot-main reveal"><img src="assets/night.jpg" alt="Ночная фестивальная сцена и публика" /><figcaption>Сцена «Порт» / 2027</figcaption></figure>
+        <div class="editorial-copy reveal"><span>БЕЛЫЕ НОЧИ</span><h2>Темноты<br>не будет.</h2><p>Солнце уйдёт за горизонт всего на сорок минут. Мы заполним их звуком.</p></div>
+        <figure class="shot shot-small reveal"><img src="assets/stage.jpg" alt="Световое шоу на сцене" /><figcaption>Световая лаборатория / Цех</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="place section" id="place">
+      <div class="section-label reveal"><span>03</span><p>МЕСТО</p></div>
+      <div class="place-grid">
+        <div class="place-copy reveal"><p>Бывшая кабельная фабрика<br>на берегу Финского залива</p><h2>Севкабель<br><em>Порт.</em></h2><a href="https://yandex.ru/maps/?text=Севкабель%20Порт" target="_blank" rel="noreferrer">Открыть в Яндекс Картах <span>↗</span></a></div>
+        <div class="map-art reveal" aria-label="Стилизованная карта Севкабель Порта"><span class="water">ФИНСКИЙ ЗАЛИВ</span><div class="shore"></div><div class="route"></div><div class="pin">С</div><p>КОЖЕВЕННАЯ ЛИНИЯ, 40</p><small>59.9272° N<br>30.2414° E</small></div>
+      </div>
+    </section>
+
+    <section class="tickets section" id="tickets">
+      <div class="section-label reveal"><span>04</span><p>БИЛЕТЫ</p></div>
+      <div class="ticket-intro reveal"><h2>Выбери<br><em>свою глубину.</em></h2><p>Следующая волна цен<br>начнётся 1 сентября.</p></div>
+      <div class="ticket-list">
+        <article class="ticket reveal"><div><span>01 / ОДИН ДЕНЬ</span><h3>СИГНАЛ</h3></div><p>Один выбранный день<br>Все основные сцены</p><strong>5 900 ₽</strong><button type="button" data-ticket="СИГНАЛ — 5 900 ₽">Выбрать <i>↗</i></button></article>
+        <article class="ticket featured reveal"><div><span>02 / ТРИ ДНЯ · ВЫБОР ГОСТЕЙ</span><h3>ПОЛЮС</h3></div><p>Все дни фестиваля<br>Повторный вход</p><strong>13 900 ₽</strong><button type="button" data-ticket="ПОЛЮС — 13 900 ₽">Выбрать <i>↗</i></button></article>
+        <article class="ticket reveal"><div><span>03 / ОСОБЫЙ ДОСТУП</span><h3>ЗЕНИТ</h3></div><p>Все дни и backstage<br>Отдельный вход + бар</p><strong>27 900 ₽</strong><button type="button" data-ticket="ЗЕНИТ — 27 900 ₽">Выбрать <i>↗</i></button></article>
+      </div>
+    </section>
+
+    <section class="countdown section">
+      <p class="reveal">ДО ВСТРЕЧИ НА СЕВЕРЕ</p>
+      <div class="countdown-grid reveal"><div><b id="days">000</b><span>дней</span></div><div><b id="hours">00</b><span>часов</span></div><div><b id="minutes">00</b><span>минут</span></div><div><b id="seconds">00</b><span>секунд</span></div></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top"><a href="#top" class="footer-word">СЕВЕР<span>↗</span></a><p>Музыка звучит громче,<br>когда вокруг вода.</p></div>
+    <div class="footer-bottom"><p>© 2027 · Санкт-Петербург</p><div><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">VK</a><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">Telegram</a><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">YouTube</a></div><button type="button" data-modal="account">Личный кабинет</button></div>
+  </footer>
+
+  <div class="modal" id="account-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="account-title"><div class="modal-card account-card"><button class="modal-x" type="button" data-close aria-label="Закрыть">×</button><span class="modal-label">СЕВЕР / ID</span><div id="auth-view"><h2 id="account-title">Личный<br><em>кабинет.</em></h2><p id="auth-description">Билеты и избранные события всегда под рукой.</p><form id="account-form"><label>Почта<input type="email" name="email" placeholder="name@example.ru" required /></label><label>Пароль<input type="password" name="password" placeholder="Минимум 6 символов" minlength="6" required /></label><button type="submit"><span id="auth-submit-text">Продолжить</span><span>↗</span></button></form><small>Впервые на СЕВЕРЕ? <button type="button" id="register-switch">Создать ID</button></small></div><div id="account-view" hidden><div class="account-hero"><span>ВАШ ПРОФИЛЬ АКТИВЕН</span><h2>СЕВЕР<br><em>ID.</em></h2><i>● ONLINE</i></div><div class="account-identity"><span id="profile-avatar">А</span><div><small>УЧАСТНИК</small><b id="profile-email">name@example.ru</b><code id="profile-id">SVR-000000</code></div></div><div class="account-stats"><div><span>МОЙ БИЛЕТ</span><b id="profile-ticket">Пока не выбран</b><a href="#tickets" data-close>Выбрать билет ↗</a></div><div><span>МОЯ ПРОГРАММА</span><b>0 событий</b><small>Добавляйте артистов из расписания</small></div></div><div class="account-actions"><button type="button" id="account-logout">Выйти из ID</button><span>Создан <time id="profile-created">сегодня</time></span></div></div></div></div>
+  <div class="modal" id="ticket-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ticket-title"><div class="modal-card ticket-modal-card"><button class="modal-x" type="button" data-close aria-label="Закрыть">×</button><span class="modal-label">БРОНИРОВАНИЕ / 2027</span><h2 id="ticket-title">Ваш<br><em>билет.</em></h2><div class="selected-ticket"><span>Тариф</span><b id="selected-ticket">ПОЛЮС — 13 900 ₽</b></div><form id="ticket-form"><label>Почта<input type="email" placeholder="Для отправки билета" required /></label><label>Количество<select><option>1 билет</option><option>2 билета</option><option>3 билета</option><option>4 билета</option></select></label><button type="submit">Перейти к оплате <span>↗</span></button></form><small>Демо-режим: платёж не списывается.</small></div></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
 </html>
