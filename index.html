@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="account.css" />
+  <link rel="stylesheet" href="mobile.css" />
 </head>
 <body>
   <div class="loader" aria-hidden="true"><span>СЕВЕР</span><i></i></div>
@@ -143,6 +144,13 @@
     <div class="footer-top"><a href="#top" class="footer-word">СЕВЕР<span>↗</span></a><p>Музыка звучит громче,<br>когда вокруг вода.</p></div>
     <div class="footer-bottom"><p>© 2027 · Санкт-Петербург</p><div><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">VK</a><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">Telegram</a><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">YouTube</a></div><button type="button" data-modal="account">Личный кабинет</button></div>
   </footer>
+
+  <nav class="mobile-dock" aria-label="Быстрая навигация">
+    <a href="#top"><i>⌂</i><span>Главная</span></a>
+    <a href="#program"><i>◫</i><span>Лайнап</span></a>
+    <a class="dock-ticket" href="#tickets"><i>↗</i><span>Билет</span></a>
+    <button type="button" data-modal="account"><i>○</i><span>Профиль</span></button>
+  </nav>
 
   <div class="modal" id="account-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="account-title"><div class="modal-card account-card"><button class="modal-x" type="button" data-close aria-label="Закрыть">×</button><span class="modal-label">СЕВЕР / ID</span><div id="auth-view"><h2 id="account-title">Личный<br><em>кабинет.</em></h2><p id="auth-description">Билеты и избранные события всегда под рукой.</p><form id="account-form"><label>Почта<input type="email" name="email" placeholder="name@example.ru" required /></label><label>Пароль<input type="password" name="password" placeholder="Минимум 6 символов" minlength="6" required /></label><button type="submit"><span id="auth-submit-text">Продолжить</span><span>↗</span></button></form><small>Впервые на СЕВЕРЕ? <button type="button" id="register-switch">Создать ID</button></small></div><div id="account-view" hidden><div class="account-hero"><span>ВАШ ПРОФИЛЬ АКТИВЕН</span><h2>СЕВЕР<br><em>ID.</em></h2><i>● ONLINE</i></div><div class="account-identity"><span id="profile-avatar">А</span><div><small>УЧАСТНИК</small><b id="profile-email">name@example.ru</b><code id="profile-id">SVR-000000</code></div></div><div class="account-stats"><div><span>МОЙ БИЛЕТ</span><b id="profile-ticket">Пока не выбран</b><a href="#tickets" data-close>Выбрать билет ↗</a></div><div><span>МОЯ ПРОГРАММА</span><b>0 событий</b><small>Добавляйте артистов из расписания</small></div></div><div class="account-actions"><button type="button" id="account-logout">Выйти из ID</button><span>Создан <time id="profile-created">сегодня</time></span></div></div></div></div>
   <div class="modal" id="ticket-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ticket-title"><div class="modal-card ticket-modal-card"><button class="modal-x" type="button" data-close aria-label="Закрыть">×</button><span class="modal-label">БРОНИРОВАНИЕ / 2027</span><h2 id="ticket-title">Ваш<br><em>билет.</em></h2><div class="selected-ticket"><span>Тариф</span><b id="selected-ticket">ПОЛЮС — 13 900 ₽</b></div><form id="ticket-form"><label>Почта<input type="email" placeholder="Для отправки билета" required /></label><label>Количество<select><option>1 билет</option><option>2 билета</option><option>3 билета</option><option>4 билета</option></select></label><button type="submit">Перейти к оплате <span>↗</span></button></form><small>Демо-режим: платёж не списывается.</small></div></div>
