@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { createObject } from './object.js';
-import { sceneState, mix } from './motion.js';
+import { sceneState, mix, clamp } from './motion.js';
 
 export function createScene(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:'high-performance' });
@@ -32,13 +32,17 @@ export function createScene(canvas) {
     camera.updateProjectionMatrix();
   }
   resize();
-  function render(progress,energy,time,moving,mobileOffset=0) {
+  function render(progress,energy,time,moving,mobileOffset=0,inspection={rotation:Math.PI,lightAngle:-35}) {
     const state=sceneState(progress,mobile);
     const aspect=width/height;
     const narrowScale=mobile?Math.min(1,width/420)*800/height:Math.min(1,aspect/1.5);
     object.root.position.set(state.x*(mobile?1:Math.min(1,aspect/1.65)),state.y+mobileOffset,0);
     object.root.scale.setScalar(state.scale*narrowScale);
-    object.root.rotation.set(state.rx+(moving?pointer.y*.07:0),state.ry+(moving?pointer.x*.13:0),state.rz);
+    const inspectWeight=clamp(1-Math.abs(progress-2));
+    const surfaceWeight=clamp(1-Math.abs(progress-3));
+    const angle=mix(-35,inspection.lightAngle,surfaceWeight)*Math.PI/180;
+    key.position.set(Math.sin(angle)*8,5,Math.cos(angle)*8);
+    object.root.rotation.set(state.rx+(moving?pointer.y*.07:0),state.ry+(inspection.rotation-Math.PI)*inspectWeight+(moving?pointer.x*.13:0),state.rz);
     object.update(state.explode,energy,time,moving);
     renderer.render(scene,camera);
   }

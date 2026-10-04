@@ -1,6 +1,7 @@
 import './style.css';
 import { SoundEngine } from './audio.js';
-import { chapterProgress, clamp, mix, sceneState, mobileSlot } from './motion.js';
+import { clamp, mix, sceneState, mobileCenter } from './motion.js';
+import { createPager } from './pager.js';
 
 const $ = selector => document.querySelector(selector);
 const chapters = [...document.querySelectorAll('.chapter')];
@@ -10,19 +11,28 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 let motion = !reduced.matches;
 let scene = null;
 let renderFailed = false;
-let anchors = [];
+let strikeAt = -Infinity;
+let rotation = Math.PI;
+let lightAngle = -35;
 let requested = false;
 let current = 0;
 let target = 0;
+let initialized = false;
 let previousTime = 0;
 let framesLeft = 4;
 let lastPlaying = false;
 let finish = 'silver';
-const stage = $('.stage');
 const shadow = $('.stage-shadow');
 const wave = $('#waveform');
 const waveContext = wave.getContext('2d');
 const samples = new Float32Array(1024);
+for(const chapter of chapters) {
+  const content=document.createElement('div');
+  content.className='scene-content';
+  content.append(...chapter.childNodes);
+  chapter.append(content);
+  chapter.addEventListener('scroll',requestFrame,{passive:true});
+}
 
 function updateAudioUI() {
   const playing = audio.playing;
@@ -64,48 +74,42 @@ function frame(now) {
   let mobileOffset=0;
   if(mobile) {
     // On phones the object occupies its own editorial slot and cannot cover the controls.
-    const screenCenter=mobileSlot(target, anchors)-scrollY;
+    const screenCenter=mobileCenter(current,Math.max(760,innerHeight))-chapters[target].scrollTop;
     const desired=(.5-screenCenter/innerHeight)*6.24;
     mobileOffset=desired-sceneState(current,true).y;
   }
-  const footerTop=$('footer').getBoundingClientRect().top;
-  stage.style.opacity=String(clamp(footerTop/innerHeight));
   shadow.style.opacity=String(clamp(1-current*1.4));
   if(!scene) {
     const poster=$('.fallback-object');
     poster.style.opacity=String(clamp(1-target*2));
-    poster.style.top=`${Math.max(-600,innerHeight*.5-scrollY)}px`;
+    poster.style.top='50%';
   }
   if(scene && !renderFailed) {
-    try { scene.render(current,audio.getEnergy(),now/1000,motion,mobileOffset); }
-    catch(error) { fallback('Не удалось отобразить 3D. Показан постер; звук и управление доступны.'); console.error(error); }
+    const strike=motion?Math.exp(-(now-strikeAt)/480)*clamp(1-Math.abs(current-4)):0;
+    try { scene.render(current,Math.max(audio.getEnergy(),strike),now/1000,motion,mobileOffset,{rotation,lightAngle}); }
+    catch(error) { fallback('Не удалось отобразить 3D. Звуковой инструмент доступен отдельно.'); console.error(error); }
   }
   if(lastPlaying!==audio.playing) updateAudioUI();
   drawWave();
   framesLeft--;
-  if(audio.playing || Math.abs(current-target)>.0005 && motion || framesLeft>0) {
+  if(audio.playing || motion&&(Math.abs(current-target)>.0005 || now-strikeAt<2800) || framesLeft>0) {
     requested=true;requestAnimationFrame(frame);
   }
 }
 
 function measure() {
-  anchors=chapters.map(section=>section.offsetTop);
-  target=chapterProgress(scrollY,anchors);
   scene?.resize();
   wave.width=Math.max(1,Math.round(wave.clientWidth* Math.min(devicePixelRatio,2)));
   wave.height=80;
-  scrollChanged();
+  requestFrame();
 }
 
-function scrollChanged() {
-  target=chapterProgress(scrollY,anchors);
-  const active=clamp(Math.floor(chapterProgress(scrollY+innerHeight*.4,anchors)),0,3);
+function sceneChanged(active) {
+  target=active;
+  if(!initialized) {current=active;initialized=true;}
   links.forEach((link,i)=>i===active?link.setAttribute('aria-current','location'):link.removeAttribute('aria-current'));
-  links.forEach(link=>{
-    const rect=link.getBoundingClientRect();
-    const below=chapters.findIndex(section=>{const r=section.getBoundingClientRect();return rect.y+rect.height/2>=r.top && rect.y+rect.height/2<r.bottom;});
-    link.classList.toggle('dark-scene',below===1||below===3);
-  });
+  document.body.classList.toggle('dark-current',[1,3,5].includes(active));
+  if(active!==5&&audio.playing) {void audio.setPlaying(false);updateAudioUI();}
   requestFrame();
 }
 
@@ -150,7 +154,19 @@ document.querySelectorAll('[data-finish]').forEach(button=>button.addEventListen
   $('.fallback-object').style.filter=finish==='graphite'?'brightness(.65)':'none';
   requestFrame();
 }));
-addEventListener('scroll',scrollChanged,{passive:true});
+$('#rotation').addEventListener('input',event=>{
+  rotation=Number(event.target.value)*Math.PI/180;
+  $('#rotation-value').textContent=`${event.target.value}°`;requestFrame();
+});
+$('#light').addEventListener('input',event=>{
+  lightAngle=Number(event.target.value);
+  $('#light-value').textContent=`${event.target.value}°`;requestFrame();
+});
+$('#strike').addEventListener('click',()=>{
+  strikeAt=performance.now();
+  $('#strike-status').textContent=motion?'Импульс передан мембране.':'Включи движение сверху, чтобы увидеть импульс.';
+  requestFrame();
+});
 addEventListener('resize',measure,{passive:true});
 addEventListener('pointermove',event=>{
   if(!motion || event.pointerType==='touch') return;
@@ -165,6 +181,8 @@ addEventListener('pagehide',()=>{void audio.setPlaying(false);});
 
 function fallback(message) {
   renderFailed=true;
+  document.querySelectorAll('.detail-control input,.surface-controls input,.surface-controls button,#strike').forEach(control=>{control.disabled=true;});
+  $('#strike-status').textContent='Для импульса нужна работающая 3D-сцена.';
   document.body.classList.add('graphics-fallback');
   try {scene?.dispose();} catch { /* Fallback remains usable after a lost graphics context. */ }
   scene=null;
@@ -177,7 +195,8 @@ $('#scene').addEventListener('webglcontextlost',event=>{
   event.preventDefault();
   fallback('3D остановлено браузером. Обнови страницу, чтобы вернуть сцену.');
 });
-measure();applyMotion();scrollChanged();
+createPager(chapters,sceneChanged);
+measure();applyMotion();
 document.fonts.ready.then(measure);
 // Dynamic import lets the editorial page and audio survive an unavailable 3D renderer.
 import('./scene.js').then(({createScene})=>{
@@ -187,6 +206,6 @@ import('./scene.js').then(({createScene})=>{
   $('#scene-status').textContent='';
   measure();
 }).catch(error=>{
-  fallback('3D недоступно. Показан постер; звук и управление доступны.');
+  fallback('3D недоступно. Звук работает отдельно; постер есть на первом экране.');
   console.warn('TENSION: 3D fallback',error.message);
 });
