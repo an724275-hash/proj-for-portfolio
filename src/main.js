@@ -119,12 +119,9 @@ function sceneChanged(active) {
 }
 
 function applyMotion() {
-  $('#motion').setAttribute('aria-pressed',String(!motion));
-  $('#motion').textContent=`Движение: ${motion?'вкл':'выкл'}`;
   document.documentElement.classList.toggle('motion-off',!motion);
   requestFrame();
 }
-$('#motion').addEventListener('click',()=>{motion=!motion;applyMotion();});
 reduced.addEventListener('change',event=>{motion=!event.matches;applyMotion();});
 $('#sound').addEventListener('click',async()=>{
   try {
@@ -169,7 +166,7 @@ $('#light').addEventListener('input',event=>{
 });
 $('#strike').addEventListener('click',()=>{
   strikeAt=performance.now();
-  $('#strike-status').textContent=motion?'Импульс передан мембране.':'Включи движение сверху, чтобы увидеть импульс.';
+  $('#strike-status').textContent=motion?'Импульс передан мембране.':'Анимация отключена настройкой уменьшения движения в системе.';
   requestFrame();
 });
 addEventListener('resize',measure,{passive:true});
