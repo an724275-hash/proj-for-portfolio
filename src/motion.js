@@ -13,7 +13,7 @@ const phone = [
   [0,0,.82,-.2,-.3,-.3,0],
   [0,0,.57,.12,-1,-.3,1],
   [0,0,.76,-.2,Math.PI,.2,0],
-  [0,0,1,-.2,-.6,-.35,0],
+  [0,0,.86,-.2,-.6,-.35,0],
   [0,0,.72,-.15,.3,.2,0],
   [0,0,.42,.05,-.22,0,0],
 ];
@@ -24,7 +24,7 @@ export function sceneState(progress, mobile=false) {
   return Object.fromEntries(['x','y','scale','rx','ry','rz','explode'].map((key,k)=>[key,mix(frames[i][k],frames[i+1][k],t)]));
 }
 export function mobileCenter(progress,height) {
-  const centers=[height*.52,height*.57,height*.54,height*.54,height*.63,270];
+  const centers=[height*.52,height*.57,height*.54,height*.5-26,height*.63,270];
   const p=clamp(progress,0,5),i=Math.min(4,Math.floor(p));
   return mix(centers[i],centers[i+1],smooth(p-i));
 }

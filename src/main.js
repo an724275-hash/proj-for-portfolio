@@ -1,4 +1,5 @@
 import './style.css';
+import './glass.css';
 import { SoundEngine } from './audio.js';
 import { clamp, mix, sceneState, mobileCenter } from './motion.js';
 import { createPager } from './pager.js';
@@ -26,6 +27,10 @@ const shadow = $('.stage-shadow');
 const wave = $('#waveform');
 const waveContext = wave.getContext('2d');
 const samples = new Float32Array(1024);
+document.querySelectorAll('input[type="range"]').forEach(input=>{
+  const update=()=>input.style.setProperty('--fill',`${(Number(input.value)-Number(input.min))/(Number(input.max)-Number(input.min))*100}%`);
+  input.addEventListener('input',update);update();
+});
 for(const chapter of chapters) {
   const content=document.createElement('div');
   content.className='scene-content';
