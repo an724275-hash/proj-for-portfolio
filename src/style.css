@@ -14,6 +14,10 @@ button:focus-visible,a:focus-visible,input:focus-visible {outline:2px solid curr
 .chapter:focus {outline:none}
 p,h1,h2 {margin:0}
 p {line-height:1.6}
+.ui-arrow {width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.section-label a,.text-link {gap:8px}
+.play-symbol {display:block;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid currentColor}
+.sound-button[aria-pressed=true] .play-symbol {width:9px;height:9px;border:0;background:currentColor;border-radius:1px}
 .header {position:fixed;z-index:8;left:var(--pad);right:var(--pad);top:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:color .5s}
 .wordmark {font-size:30px;font-weight:850;letter-spacing:-2px;min-height:44px}
 .motion-button {font-size:12px;padding:12px 0 12px 12px}

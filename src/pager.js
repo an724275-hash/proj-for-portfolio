@@ -1,8 +1,11 @@
 import { clamp, WheelGesture } from './motion.js';
+import { SwipeGesture } from './swipe.js';
 
 export function createPager(chapters, onChange) {
   let index=-1, touch=null;
   const wheel=new WheelGesture();
+  const swipe=new SwipeGesture();
+  let suppressClickUntil=0;
   const controls='input,textarea,select,button,[contenteditable=true]';
   function go(next,{history=true,focus=false}={}) {
     next=clamp(next,0,chapters.length-1);
@@ -35,6 +38,9 @@ export function createPager(chapters, onChange) {
   }
   document.documentElement.classList.add('paged');
   document.addEventListener('click',event=>{
+    if(performance.now()<suppressClickUntil && event.detail!==0) {event.preventDefault();event.stopImmediatePropagation();}
+  },true);
+  document.addEventListener('click',event=>{
     const link=event.target.closest('a[href^="#"]');
     if(!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     const next=chapters.findIndex(c=>`#${c.id}`===link.getAttribute('href'));
@@ -58,13 +64,27 @@ export function createPager(chapters, onChange) {
     }
   });
   document.addEventListener('touchstart',event=>{
-    if(event.touches.length!==1 || event.target.closest(controls)) {touch=null;return;}
-    const t=event.touches[0];touch={x:t.clientX,y:t.clientY,canDown:scrollable(event.target,1),canUp:scrollable(event.target,-1)};
+    if(event.touches.length!==1 || event.target.closest('input,textarea,select,[contenteditable=true]')) {touch=null;return;}
+    const t=event.touches[0];
+    // Only settings panels retain native overflow. A swipe on the scene always pages.
+    const panel=event.target.closest('.console,.detail-control,.surface-controls');
+    touch={x:t.clientX,y:t.clientY,paged:false,native:!!panel&&(scrollable(event.target,1)||scrollable(event.target,-1))};
+    swipe.start(t.clientX,t.clientY);
   },{passive:true});
+  document.addEventListener('touchmove',event=>{
+    if(!touch || event.touches.length!==1) {touch=null;return;}
+    if(touch.native) return;
+    const t=event.touches[0];
+    if(!touch.paged && Math.abs(t.clientX-touch.x)>Math.abs(t.clientY-touch.y)*1.2) {swipe.move(t.clientX,t.clientY);return;}
+    if(event.cancelable) event.preventDefault();
+    const direction=swipe.move(t.clientX,t.clientY);
+    if(direction) {touch.paged=true;suppressClickUntil=performance.now()+450;go(index+direction);}
+  },{passive:false});
   document.addEventListener('touchend',event=>{
     if(!touch || !event.changedTouches.length) return;
-    const t=event.changedTouches[0],dy=touch.y-t.clientY,dx=touch.x-t.clientX;
-    if(Math.abs(dy)>45&&Math.abs(dy)>Math.abs(dx)*1.2&&!(dy>0?touch.canDown:touch.canUp)) go(index+Math.sign(dy));
+    const t=event.changedTouches[0],direction=touch.native?0:swipe.move(t.clientX,t.clientY);
+    if(direction) {suppressClickUntil=performance.now()+450;go(index+direction);}
+    if(touch.paged) suppressClickUntil=performance.now()+450;
     touch=null;
   },{passive:true});
   document.addEventListener('touchcancel',()=>{touch=null;},{passive:true});

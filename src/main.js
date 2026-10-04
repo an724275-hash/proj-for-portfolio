@@ -43,7 +43,6 @@ function updateAudioUI() {
   const playing = audio.playing;
   $('#sound').setAttribute('aria-pressed', String(playing));
   $('#sound-label').textContent = playing ? 'Выключить звук' : 'Включить звук';
-  $('.play-symbol').textContent = playing ? '■' : '▶';
   $('#audio-state').textContent = playing ? 'Сигнал включён' : 'Звук выключен';
   lastPlaying = playing;
 }
