@@ -1,0 +1,9 @@
+{
+  "name": "tension-experience",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vite --host 127.0.0.1", "build": "vite build", "preview": "vite preview --host 127.0.0.1", "test": "node --test src/*.test.js" },
+  "dependencies": { "three": "0.186.1", "@fontsource/anton": "^5.2.6", "@fontsource-variable/manrope": "^5.2.8" },
+  "devDependencies": { "vite": "8.3.2" }
+}

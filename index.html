@@ -2,159 +2,56 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0d0f" />
-  <meta name="description" content="СЕВЕР — фестиваль новой музыки и визуального искусства на берегу Финского залива." />
-  <title>СЕВЕР — фестиваль новой культуры</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="account.css" />
-  <link rel="stylesheet" href="mobile.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e8e3d9" />
+  <meta name="description" content="TENSION: интерактивный эксперимент со звуком, материалом и движением. Разберите акустическую скульптуру прокруткой и создайте собственный импульс." />
+  <title>TENSION · Звук обретает форму</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <script type="module" src="/src/main.js"></script>
 </head>
 <body>
-  <div class="loader" aria-hidden="true"><span>СЕВЕР</span><i></i></div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="СЕВЕР — наверх">СЕВЕР<sup>27</sup></a>
-    <nav class="desktop-nav" aria-label="Основная навигация">
-      <a href="#idea">Идея</a><a href="#program">Программа</a><a href="#place">Место</a><a href="#tickets">Билеты</a>
-    </nav>
-    <div class="header-actions">
-      <button class="login-trigger" type="button" data-modal="account">Войти</button>
-      <a class="micro-button" href="#tickets">Билет <span>↗</span></a>
-      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false"><i></i><i></i></button>
-    </div>
+  <a class="skip-link" href="#instrument">К управлению звуком</a>
+  <header class="header">
+    <a class="wordmark" href="#intro" aria-label="Tension, в начало">tension</a>
+    <span class="header-note">Звук. Материал. Движение.</span>
+    <button class="motion-button" id="motion" type="button" aria-pressed="false">Движение: вкл</button>
   </header>
-
-  <aside class="mobile-menu" aria-hidden="true">
-    <nav><a href="#idea">Идея</a><a href="#program">Программа</a><a href="#place">Место</a><a href="#tickets">Билеты</a></nav>
-    <p>18—20 июня 2027<br>Санкт-Петербург</p>
-  </aside>
-
-  <main id="top">
-    <section class="hero">
-      <img class="hero-photo" src="assets/crowd.jpg" alt="Люди на концерте в синем свете" />
-      <div class="hero-shade"></div>
-      <div class="hero-topline"><span>59.9272° N / 30.2414° E</span><span>Санкт-Петербург · Россия</span></div>
-      <div class="hero-copy">
-        <p class="kicker reveal">Фестиваль новой культуры</p>
-        <h1 aria-label="Север"><span>СЕ</span><span class="outline">ВЕР</span></h1>
-        <div class="hero-meta reveal">
-          <p>Три дня музыки, света<br>и северного воздуха.</p>
-          <p class="hero-date"><b>18—20</b><br>ИЮНЯ · 2027</p>
-        </div>
-      </div>
-      <a class="hero-cta" href="#tickets"><span>Войти<br>в лето</span><i>↓</i></a>
-      <div class="hero-index">01 <span></span> 06</div>
+  <div class="stage" aria-hidden="true"><div class="stage-shadow"></div><img class="fallback-object" src="./object-poster.svg" alt="" /><canvas id="scene"></canvas></div>
+  <p class="scene-status" id="scene-status" role="status">Подготавливаем 3D-сцену…</p>
+  <main>
+    <section class="chapter intro" id="intro" aria-labelledby="intro-title">
+      <div class="hero-meta"><span>Интерактивный звуковой объект</span><span>Веб-эксперимент / ave.dev</span></div>
+      <h1 class="hero-title" id="intro-title">TENSION</h1>
+      <div class="intro-bottom"><p class="intro-copy">Звук обретает форму.<br>Дальше решаешь ты.</p><a class="scroll-link" href="#anatomy"><span class="scroll-icon" aria-hidden="true">↓</span>Прокрути, чтобы разобрать</a><span class="edition">SOUND<br>IN MATTER</span></div>
     </section>
-
-    <section class="ticker" aria-label="Темы фестиваля"><div>
-      <span>МУЗЫКА</span><i>✦</i><span>СВЕТ</span><i>✦</i><span>АРХИТЕКТУРА</span><i>✦</i><span>БЕЛЫЕ НОЧИ</span><i>✦</i><span>МУЗЫКА</span><i>✦</i><span>СВЕТ</span><i>✦</i><span>АРХИТЕКТУРА</span><i>✦</i><span>БЕЛЫЕ НОЧИ</span><i>✦</i>
-    </div></section>
-
-    <section class="manifest section" id="idea">
-      <div class="section-label reveal"><span>01</span><p>МАНИФЕСТ</p></div>
-      <div class="manifest-copy">
-        <p class="manifest-side reveal">Не убегаем от города.<br>Меняем его частоту.</p>
-        <h2 class="reveal">Город кончается.<br><em>Начинается Север.</em></h2>
-      </div>
-      <div class="manifest-bottom">
-        <p class="reveal">СЕВЕР собирает тех, кому мало просто слушать. Музыканты, художники и архитекторы создают пространство, которое существует только три дня — между водой, небом и бывшими заводскими цехами.</p>
-        <div class="metrics reveal"><div><b>03</b><span>дня</span></div><div><b>42</b><span>артиста</span></div><div><b>05</b><span>пространств</span></div></div>
-      </div>
+    <section class="chapter anatomy" id="anatomy" aria-labelledby="anatomy-title">
+      <div class="section-label"><span>01 / Устройство</span><span>Снаружи внутрь</span></div>
+      <div class="anatomy-copy"><h2 id="anatomy-title">Внутри<br>движения.</h2><p>Одна ось. Несколько слоёв.<br>Прокрутка раскрывает конструкцию.</p></div>
+      <div class="parts-list"><span>01 &nbsp; Алюминиевая рама</span><span>02 &nbsp; Упругий подвес</span><span>03 &nbsp; Мембрана и катушка</span></div>
+      <p class="chapter-note">Художественная модель.<br>Не инженерный чертёж.</p>
     </section>
-
-    <section class="portal">
-      <div class="portal-sticky">
-        <img src="assets/north.jpg" alt="Заснеженный северный лес" />
-        <div class="portal-overlay"></div>
-        <p class="portal-small">СЕВЕР — ЭТО НЕ НАПРАВЛЕНИЕ</p>
-        <h2>ЭТО<br><span>СОСТОЯНИЕ</span></h2>
-        <p class="portal-coordinates">64°32′ N<br>40°32′ E</p>
-      </div>
+    <section class="chapter pulse" id="pulse" aria-labelledby="pulse-title">
+      <div class="section-label"><span>02 / Импульс</span><span>Форма следует звуку</span></div>
+      <h2 id="pulse-title">ТИШИНУ<br><span>МОЖНО</span><br>СДВИНУТЬ.</h2>
+      <div class="pulse-bottom"><p>Включи сигнал.<br>Посмотри, как меняется поверхность.</p><a class="text-link" href="#instrument">Перейти к инструменту ↘</a></div>
     </section>
-
-    <section class="program section" id="program">
-      <div class="section-label reveal"><span>02</span><p>ПРОГРАММА</p></div>
-      <div class="program-head reveal">
-        <h2>Три дня.<br><em>Один пульс.</em></h2>
-        <div class="day-tabs" role="tablist" aria-label="Дни фестиваля">
-          <button class="active" role="tab" aria-selected="true" data-day="day1">ПТ 18</button>
-          <button role="tab" aria-selected="false" data-day="day2">СБ 19</button>
-          <button role="tab" aria-selected="false" data-day="day3">ВС 20</button>
-        </div>
+    <section class="chapter instrument" id="instrument" aria-labelledby="instrument-title" tabindex="-1">
+      <div class="section-label"><span>03 / Твой сигнал</span><span>Web Audio × WebGL</span></div>
+      <div class="instrument-copy"><h2 id="instrument-title">Теперь<br>твоя частота.</h2><p>Меняй тембр и высоту сигнала.<br>Мембрана реагирует на его амплитуду.</p></div>
+      <div class="console">
+        <div class="console-heading"><span>Генератор сигнала</span><span id="audio-state" role="status">Звук выключен</span></div>
+        <div class="preset-group" role="group" aria-label="Тембр сигнала"><button type="button" data-preset="pulse" aria-pressed="true">Импульс</button><button type="button" data-preset="drift" aria-pressed="false">Дрейф</button><button type="button" data-preset="grain" aria-pressed="false">Зерно</button></div>
+        <div class="range-row"><label for="frequency">Частота</label><output for="frequency" id="frequency-value">110 Гц</output><input id="frequency" type="range" min="55" max="220" value="110" step="1" /></div>
+        <div class="range-row"><label for="volume">Громкость</label><output for="volume" id="volume-value">18%</output><input id="volume" type="range" min="0" max="50" value="18" step="1" /></div>
+        <canvas class="waveform" id="waveform" aria-hidden="true"></canvas>
+        <button class="sound-button" id="sound" type="button" aria-pressed="false"><span class="play-symbol" aria-hidden="true">▶</span><span id="sound-label">Включить звук</span></button>
+        <p class="sound-hint">Начни с тихой громкости. Звук не включается сам.</p>
       </div>
-      <div class="schedule active" id="day1">
-        <article><time>18:00</time><h3>SHORTPARIS</h3><p>Главный ангар · Live</p><i>01</i></article>
-        <article><time>20:30</time><h3>IC3PEAK</h3><p>Главный ангар · AV show</p><i>02</i></article>
-        <article><time>23:00</time><h3>СБПЧ</h3><p>Порт · Special set</p><i>03</i></article>
-        <article><time>01:30</time><h3>НИКИТИН</h3><p>Цех · All night long</p><i>04</i></article>
-      </div>
-      <div class="schedule" id="day2">
-        <article><time>17:00</time><h3>ХАДН ДАДН</h3><p>Порт · Live</p><i>01</i></article>
-        <article><time>19:30</time><h3>LOVV66</h3><p>Главный ангар · Live</p><i>02</i></article>
-        <article><time>22:00</time><h3>БАЗАР</h3><p>Цех · Hybrid set</p><i>03</i></article>
-        <article><time>00:30</time><h3>CHERNOBURKV</h3><p>Порт · Live</p><i>04</i></article>
-      </div>
-      <div class="schedule" id="day3">
-        <article><time>16:00</time><h3>ЛАУД</h3><p>Порт · Sunset set</p><i>01</i></article>
-        <article><time>19:00</time><h3>ЭЛЕКТРОФОРЕЗ</h3><p>Главный ангар · Live</p><i>02</i></article>
-        <article><time>21:30</time><h3>СИРОТКИН</h3><p>Порт · Closing</p><i>03</i></article>
-        <article><time>23:30</time><h3>SECRET GUEST</h3><p>Крыша · Finale</p><i>04</i></article>
-      </div>
-    </section>
-
-    <section class="editorial section">
-      <div class="editorial-grid">
-        <figure class="shot shot-main reveal"><img src="assets/night.jpg" alt="Ночная фестивальная сцена и публика" /><figcaption>Сцена «Порт» / 2027</figcaption></figure>
-        <div class="editorial-copy reveal"><span>БЕЛЫЕ НОЧИ</span><h2>Темноты<br>не будет.</h2><p>Солнце уйдёт за горизонт всего на сорок минут. Мы заполним их звуком.</p></div>
-        <figure class="shot shot-small reveal"><img src="assets/stage.jpg" alt="Световое шоу на сцене" /><figcaption>Световая лаборатория / Цех</figcaption></figure>
-      </div>
-    </section>
-
-    <section class="place section" id="place">
-      <div class="section-label reveal"><span>03</span><p>МЕСТО</p></div>
-      <div class="place-grid">
-        <div class="place-copy reveal"><p>Бывшая кабельная фабрика<br>на берегу Финского залива</p><h2>Севкабель<br><em>Порт.</em></h2><a href="https://yandex.ru/maps/?text=Севкабель%20Порт" target="_blank" rel="noreferrer">Открыть в Яндекс Картах <span>↗</span></a></div>
-        <div class="map-art reveal" aria-label="Стилизованная карта Севкабель Порта"><span class="water">ФИНСКИЙ ЗАЛИВ</span><div class="shore"></div><div class="route"></div><div class="pin">С</div><p>КОЖЕВЕННАЯ ЛИНИЯ, 40</p><small>59.9272° N<br>30.2414° E</small></div>
-      </div>
-    </section>
-
-    <section class="tickets section" id="tickets">
-      <div class="section-label reveal"><span>04</span><p>БИЛЕТЫ</p></div>
-      <div class="ticket-intro reveal"><h2>Выбери<br><em>свою глубину.</em></h2><p>Следующая волна цен<br>начнётся 1 сентября.</p></div>
-      <div class="ticket-list">
-        <article class="ticket reveal"><div><span>01 / ОДИН ДЕНЬ</span><h3>СИГНАЛ</h3></div><p>Один выбранный день<br>Все основные сцены</p><strong>5 900 ₽</strong><button type="button" data-ticket="СИГНАЛ — 5 900 ₽">Выбрать <i>↗</i></button></article>
-        <article class="ticket featured reveal"><div><span>02 / ТРИ ДНЯ · ВЫБОР ГОСТЕЙ</span><h3>ПОЛЮС</h3></div><p>Все дни фестиваля<br>Повторный вход</p><strong>13 900 ₽</strong><button type="button" data-ticket="ПОЛЮС — 13 900 ₽">Выбрать <i>↗</i></button></article>
-        <article class="ticket reveal"><div><span>03 / ОСОБЫЙ ДОСТУП</span><h3>ЗЕНИТ</h3></div><p>Все дни и backstage<br>Отдельный вход + бар</p><strong>27 900 ₽</strong><button type="button" data-ticket="ЗЕНИТ — 27 900 ₽">Выбрать <i>↗</i></button></article>
-      </div>
-    </section>
-
-    <section class="countdown section">
-      <p class="reveal">ДО ВСТРЕЧИ НА СЕВЕРЕ</p>
-      <div class="countdown-grid reveal"><div><b id="days">000</b><span>дней</span></div><div><b id="hours">00</b><span>часов</span></div><div><b id="minutes">00</b><span>минут</span></div><div><b id="seconds">00</b><span>секунд</span></div></div>
+      <div class="finish-picker" role="group" aria-label="Материал корпуса"><span>Поверхность</span><button type="button" data-finish="silver" aria-pressed="true">Алюминий</button><button type="button" data-finish="graphite" aria-pressed="false">Графит</button></div>
     </section>
   </main>
-
-  <footer>
-    <div class="footer-top"><a href="#top" class="footer-word">СЕВЕР<span>↗</span></a><p>Музыка звучит громче,<br>когда вокруг вода.</p></div>
-    <div class="footer-bottom"><p>© 2027 · Санкт-Петербург</p><div><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">VK</a><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">Telegram</a><a href="https://t.me/avee_dev" target="_blank" rel="noreferrer">YouTube</a></div><button type="button" data-modal="account">Личный кабинет</button></div>
-  </footer>
-
-  <nav class="mobile-dock" aria-label="Быстрая навигация">
-    <a href="#top"><i>⌂</i><span>Главная</span></a>
-    <a href="#program"><i>◫</i><span>Лайнап</span></a>
-    <a class="dock-ticket" href="#tickets"><i>↗</i><span>Билет</span></a>
-    <button type="button" data-modal="account"><i>○</i><span>Профиль</span></button>
-  </nav>
-
-  <div class="modal" id="account-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="account-title"><div class="modal-card account-card"><button class="modal-x" type="button" data-close aria-label="Закрыть">×</button><span class="modal-label">СЕВЕР / ID</span><div id="auth-view"><h2 id="account-title">Личный<br><em>кабинет.</em></h2><p id="auth-description">Билеты и избранные события всегда под рукой.</p><form id="account-form"><label>Почта<input type="email" name="email" placeholder="name@example.ru" required /></label><label>Пароль<input type="password" name="password" placeholder="Минимум 6 символов" minlength="6" required /></label><button type="submit"><span id="auth-submit-text">Продолжить</span><span>↗</span></button></form><small>Впервые на СЕВЕРЕ? <button type="button" id="register-switch">Создать ID</button></small></div><div id="account-view" hidden><div class="account-hero"><span>ВАШ ПРОФИЛЬ АКТИВЕН</span><h2>СЕВЕР<br><em>ID.</em></h2><i>● ONLINE</i></div><div class="account-identity"><span id="profile-avatar">А</span><div><small>УЧАСТНИК</small><b id="profile-email">name@example.ru</b><code id="profile-id">SVR-000000</code></div></div><div class="account-stats"><div><span>МОЙ БИЛЕТ</span><b id="profile-ticket">Пока не выбран</b><a href="#tickets" data-close>Выбрать билет ↗</a></div><div><span>МОЯ ПРОГРАММА</span><b>0 событий</b><small>Добавляйте артистов из расписания</small></div></div><div class="account-actions"><button type="button" id="account-logout">Выйти из ID</button><span>Создан <time id="profile-created">сегодня</time></span></div></div></div></div>
-  <div class="modal" id="ticket-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ticket-title"><div class="modal-card ticket-modal-card"><button class="modal-x" type="button" data-close aria-label="Закрыть">×</button><span class="modal-label">БРОНИРОВАНИЕ / 2027</span><h2 id="ticket-title">Ваш<br><em>билет.</em></h2><div class="selected-ticket"><span>Тариф</span><b id="selected-ticket">ПОЛЮС — 13 900 ₽</b></div><form id="ticket-form"><label>Почта<input type="email" placeholder="Для отправки билета" required /></label><label>Количество<select><option>1 билет</option><option>2 билета</option><option>3 билета</option><option>4 билета</option></select></label><button type="submit">Перейти к оплате <span>↗</span></button></form><small>Демо-режим: платёж не списывается.</small></div></div>
-  <div class="toast" role="status" aria-live="polite"></div>
-  <script src="script.js"></script>
+  <footer><div><span class="footer-logo">tension</span><p>Авторский веб-эксперимент Артёма Назарова.<br>Объект существует только в браузере.</p></div><a href="https://giveaway-one.ru/">Портфолио автора ↗</a><a href="#intro">В начало ↑</a></footer>
+  <nav class="chapter-nav" aria-label="Сцены"><a href="#intro" aria-current="location" aria-label="Объект"><span>00</span></a><a href="#anatomy" aria-label="Устройство"><span>01</span></a><a href="#pulse" aria-label="Импульс"><span>02</span></a><a href="#instrument" aria-label="Инструмент"><span>03</span></a></nav>
+  <noscript><style>.console,.finish-picker,.motion-button{display:none}.stage{position:absolute;height:100svh}</style><p class="noscript">Для интерактивной 3D-сцены и звука включи JavaScript. Описание проекта доступно ниже.</p></noscript>
 </body>
 </html>
